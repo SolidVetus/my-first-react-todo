@@ -1,50 +1,44 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    background-color: #333;
-    color: aliceblue;
-    margin: 0;
-  }
-  
-  .container {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .heading {
-    margin-left: 50px;
-  }
-  
-  .form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .todos-section {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  
-  .error {
-    width: 66%;
-    color: red;
-  }
-  
-  .delete-button-wrap {
-    display: flex;
-    flex-wrap: wrap;
-  } 
+  box-sizing: border-box;
+}
 
-  .delete-button-label {
-    font-size: 30px;
-  }
-  
+body {
+  background-color: #333;
+  color: aliceblue;
+  margin: 0;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.todos-section {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  width: 31px;
+  height: 31px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: whitesmoke;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin: 0 5px;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

@@ -1,0 +1,18 @@
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: start;
+    margin-bottom: 12px;
+    width: 400px;
+    height: 55px;
+  }
+
+  .error {
+    width: 66%;
+    color: red;
+  }
+
+  .input {
+    height: 31px;
+  }

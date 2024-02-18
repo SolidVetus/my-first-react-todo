@@ -1,18 +1,16 @@
-// import { useCallback } from 'react'
 import "./IndexMy.css";
 import { dataTodos } from "./MyData.js";
-import TaskItem from "./components/TaskItem";
-import MyForm from "./components/MyForm.jsx";
+import MyForm from "./components/MyForm/MyForm.jsx";
 import { useState } from "react";
-import Header from "./components/Header.jsx";
-import DeleteAllButton from "./components/DeleteAllBtn.jsx";
+import Header from "./components/Header/Header.jsx";
+import DeleteAllButton from "./components/DeleteAllBtn/DeleteAllBtn.jsx";
+import MyList from "./components/MyList/MyList.jsx";
 
 function App() {
   let [myTodos, setMyTodos] = useState(dataTodos);
   let [currentId, setCurrentId] = useState(myTodos[myTodos.length - 1]?.id);
 
   function InputUpdate(value) {
-    // console.log("Outer: ", value);
     myTodos.push({
       title: value,
       id: ++currentId,
@@ -20,8 +18,6 @@ function App() {
     });
     setMyTodos(myTodos);
     setCurrentId(currentId);
-
-    // console.log(myTodos);
   }
 
   function deleteTask(id) {
@@ -36,7 +32,11 @@ function App() {
     myTodos[currentIndex].completed = !myTodos[currentIndex].completed;
 
     setMyTodos(myTodos);
-    // console.log(myTodos)
+  }
+
+  function deleteAll() {
+    myTodos = [];
+    setMyTodos(myTodos);
   }
 
   return (
@@ -52,17 +52,15 @@ function App() {
           }}
         />
         <section className="todos-section">
-          <DeleteAllButton />
-          <ul className="todo-list">
-            {myTodos.map((todo) => (
-              <TaskItem
-                onDelete={(id) => deleteTask(id)}
-                onToggle={(id) => toggleTask(id)}
-                key={todo.id}
-                {...todo}
-              />
-            ))}
-          </ul>
+          <DeleteAllButton onDelete={deleteAll} />
+          {!myTodos.length && <span>Нет Задач</span>}
+          {myTodos.length !== 0 && (
+            <MyList
+              myTodos={myTodos}
+              deleteTask={deleteTask}
+              toggleTask={toggleTask}
+            />
+          )}
         </section>
       </div>
     </>

@@ -1,0 +1,10 @@
+.delete-button-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 5px;
+} 
+
+.delete-button-label {
+  font-size: 30px;
+}

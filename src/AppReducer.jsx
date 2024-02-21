@@ -1,37 +1,48 @@
 import "./IndexMy.css";
 import { dataTodos } from "./MyData.js";
 import MyForm from "./components/MyForm/MyForm.jsx";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import Header from "./components/Header/Header.jsx";
 import DeleteAllButton from "./components/DeleteAllBtn/DeleteAllBtn.jsx";
 import MyList from "./components/MyList/MyList.jsx";
+import Reducer from "./Reducer.jsx";
 
-function App() {
-  let [myTodos, setMyTodos] = useState(dataTodos);
-  let [currentId, setCurrentId] = useState(myTodos[myTodos.length - 1]?.id);
+function AppReducer() {
+  const [state, dispatch] = useReducer(Reducer, dataTodos);
+  let [currentId, setCurrentId] = useState(state[state.length - 1]?.id);
 
   function InputUpdate(value) {
-    myTodos.push({
-      title: value,
-      id: ++currentId,
-      completed: false,
+    dispatch({
+      type: "add",
+      payload: {
+        title: value,
+        currentId: ++currentId,
+      },
     });
-    setMyTodos(myTodos);
     setCurrentId(currentId);
+    console.log(state);
   }
 
   function deleteTask(id) {
-    setMyTodos(myTodos.filter((task) => {
-      return task.id !== id;
-    }));
+    dispatch({
+      type: "delete",
+      payload: id,
+    });
   }
 
+  // Как сделвать чтобы работало с помощью useReducer???
   function toggleTask() {
-    setMyTodos(myTodos);
+    
+  //   // dispatch({
+  //   //   type: "toggle",
+  //   //   payload: id
+  //   // });
+  //   // console.log(id)
+    
   }
 
   function deleteAll() {
-    setMyTodos([]);
+    dispatch({type: "deleteAll"});
   }
 
   return (
@@ -48,10 +59,10 @@ function App() {
         />
         <section className="todos-section">
           <DeleteAllButton onDelete={deleteAll} />
-          {!myTodos.length && <span>Нет Задач</span>}
-          {myTodos.length !== 0 && (
+          {!state.length && <span>Нет Задач</span>}
+          {state.length !== 0 && (
             <MyList
-              myTodos={myTodos}
+              myTodos={state}
               deleteTask={deleteTask}
               toggleTask={toggleTask}
             />
@@ -62,4 +73,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppReducer;

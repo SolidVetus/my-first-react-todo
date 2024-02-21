@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import "./DeleteAllBtn.module.css";
 import classes from "./DeleteAllBtn.module.css";
 

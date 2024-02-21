@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import "./MyForm.module.css";
 import classes from "./MyForm.module.css";
 import useInput from "../../hooks/useInput";
@@ -13,14 +13,14 @@ export default function MyForm({update}) {
         isError = !input.value.length ? true : false
         setError(isError)
         update(input.value)
-        input = '' //Как сделать чтоб работало?
+        input.value = ('') //Как сделать чтоб работало?
     }
 
   return (
-    <form className={classes["form"]}>
-      <input className={classes["input"]}type="text" {...input} placeholder="Type here..."/>
+    <form className={classes.form}>
+      <input className={classes.input}type="text" {...input} placeholder="Type here..."/>
       <button onClick={onTaskAdd} >add</button>
-      {isError && <span className={classes['error']}>Введите задачу</span>}
+      {isError && <span className={classes.error}>Введите задачу</span>}
     </form>
   );
   

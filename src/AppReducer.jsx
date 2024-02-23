@@ -8,7 +8,8 @@ import MyList from "./components/MyList/MyList.jsx";
 import Reducer from "./Reducer.jsx";
 
 function AppReducer() {
-  const [state, dispatch] = useReducer(Reducer, dataTodos);
+  const myTodos = useTodos((state) => state.myTodos)
+  // const [state, dispatch] = useReducer(Reducer, dataTodos);
   let [currentId, setCurrentId] = useState(state[state.length - 1]?.id);
 
   function InputUpdate(value) {

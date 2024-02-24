@@ -1,16 +1,21 @@
 import "./IndexMy.css";
-import { dataTodos } from "./MyData.js";
+// import { dataTodos } from "./MyData.js";
 import MyForm from "./components/MyForm/MyForm.jsx";
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import Header from "./components/Header/Header.jsx";
 import DeleteAllButton from "./components/DeleteAllBtn/DeleteAllBtn.jsx";
 import MyList from "./components/MyList/MyList.jsx";
-import Reducer from "./Reducer.jsx";
+// import Reducer from "./Reducer.jsx";
+import { useTodos } from "./stores/useMyTodo.js";
+
 
 function AppReducer() {
   const myTodos = useTodos((state) => state.myTodos)
+  console.log(myTodos)
+  // const addTodo = useTodos((state) => state.addTodo("Zalupa"))
+
   // const [state, dispatch] = useReducer(Reducer, dataTodos);
-  let [currentId, setCurrentId] = useState(state[state.length - 1]?.id);
+  // let [currentId, setCurrentId] = useState(state[state.length - 1]?.id);
 
   function InputUpdate(value) {
     dispatch({
@@ -55,15 +60,15 @@ function AppReducer() {
             if (!value) {
               return;
             }
-            InputUpdate(value);
+            addTodo(value);
           }}
         />
         <section className="todos-section">
           <DeleteAllButton onDelete={deleteAll} />
-          {!state.length && <span>Нет Задач</span>}
-          {state.length !== 0 && (
+          {/* {!state.length && <span>Нет Задач</span>}
+          {state.length !== 0 && ( */}
             <MyList
-              myTodos={state}
+              // myTodos={state}
               deleteTask={deleteTask}
               toggleTask={toggleTask}
             />

@@ -1,25 +1,11 @@
 import { create } from "zustand";
-import { dataTodos } from "./MyData.js";
+import { dataTodos } from "../MyData.js";
 
-export const useTodos = create(set => ({
+export const useTodos = create((set) => ({
     myTodos : dataTodos,
-
-    addTodo: (dataTodos.title) = set(state => {
-        const newTodo = {title, id, completed: false}
+    addTodo: (title) => set((state) => {
+        const newTodo = {title , id: state.myTodos.length + 1, completed: false}
         return {myTodos: [
-            ...state.todos, newTodo
-        ]}
+            ...state.myTodos, newTodo]}
     })
 }))
-
-// function InputUpdate(value) {
-//     dispatch({
-//       type: "add",
-//       payload: {
-//         title: value,
-//         currentId: ++currentId,
-//       },
-//     });
-//     setCurrentId(currentId);
-//     console.log(state);
-//   }

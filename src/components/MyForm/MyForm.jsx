@@ -1,12 +1,12 @@
 import "./MyForm.module.css";
 import classes from "./MyForm.module.css";
 import { useRef, useState } from "react";
-import { useTodos } from "../../stores/useMyTodo.js";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../../stores/store";
 
 export default function MyForm() {
-  const { addTodo } = useTodos();
+  const dispatch = useDispatch();
   const input = useRef(null);
-
   let [isError, setError] = useState(false);
 
   function onTaskAdd(event) {
@@ -15,7 +15,7 @@ export default function MyForm() {
       return setError(true);
     }
     setError(false);
-    addTodo(input.current.value);
+    dispatch(addTodo(input.current.value));
     input.current.value = "";
   }
 
